@@ -121,6 +121,18 @@ void road(int locationX ,int locationY){
     glVertex2i(locationX+1000,locationY-20);
     glVertex2i(locationX+1000,locationY);
     glEnd();
+
+    for(int i=0;i<=1000;i+=100){
+         glColor3ub(250,250,250);
+         glBegin(GL_QUADS);
+         glVertex2i(i,locationY+140);
+         glVertex2i(i,locationY+160);
+         glVertex2i(i+100,locationY+160);
+         glVertex2i(i+100,locationY+140);
+
+         glEnd();
+         i=i+20;
+    }
 }
 
 void display(){
