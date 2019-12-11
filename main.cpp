@@ -12,6 +12,8 @@ float _run3 = 0.0;
 
 
 int buildingWindowColor[]={240,200,100};
+int sunOrMoonColor[]={200,200,200};
+
 int cloudColor[]={255,255,255};
 
 void init(){
@@ -119,7 +121,7 @@ void bigBuilding(int locationX,int locationY){
 }
 
 void river(int locationX ,int locationY){
-    glColor3ub(0,119,190);
+    glColor3ub(0,150,190);
     glBegin(GL_QUADS);
     glVertex2i(locationX,locationY);
     glVertex2i(locationX,locationY+300);
@@ -406,7 +408,7 @@ void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOf
 }
 
 void sunOrMoon(){
-    glColor3ub(240,200,100);
+    glColor3ub(sunOrMoonColor[0],sunOrMoonColor[1],sunOrMoonColor[2]);
      drawCircle( 800, 920, 0, 65, 1000 );
 
 }
@@ -458,6 +460,33 @@ void update(int value) {
 	glutTimerFunc(25, update, 0);
 }
 
+void myKeyboard(unsigned char key, int x, int y){
+	switch (key)
+	{
+    case 'd':
+        buildingWindowColor[0]=90;
+        buildingWindowColor[1]=90;
+        buildingWindowColor[2]=90;
+         sunOrMoonColor[0]=240;
+         sunOrMoonColor[1]=240;
+         sunOrMoonColor[2]=150;
+
+        break;
+    case 'n':
+        buildingWindowColor[0]=240;
+        buildingWindowColor[1]=200;
+        buildingWindowColor[2]=100;
+         sunOrMoonColor[0]=200;
+         sunOrMoonColor[1]=200;
+         sunOrMoonColor[2]=200;
+
+        break;
+
+	default:
+	break;
+	}
+}
+
 
 int main(int argc,char **argv)
 {
@@ -475,12 +504,12 @@ int main(int argc,char **argv)
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE| GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(1200, 1200);
+	glutInitWindowSize(1800, 1200);
 	glutCreateWindow("Natural View Of A Village");     // creating the window
 	//glutFullScreen();       // making the window full screen
 	//glutInitWindowPosition(0,0);
 	glutDisplayFunc(display);
-	//glutKeyboardFunc(myKeyboard);
+	glutKeyboardFunc(myKeyboard);
 	glutTimerFunc(25, update, 0);
 	init();
 	glutMainLoop();
