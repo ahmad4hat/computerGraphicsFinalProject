@@ -67,6 +67,7 @@ void separaratorTopBuildingLine(int y){
 //}
 
 void buildWindow(int xw,int yw){
+    glPushMatrix();
     glColor3ub(buildingWindowColor[0],buildingWindowColor[1],buildingWindowColor[2]);
         glBegin(GL_QUADS);
         glVertex2i((xw+20),yw+20);
@@ -74,9 +75,11 @@ void buildWindow(int xw,int yw){
         glVertex2i(xw+80,yw+50);
         glVertex2i(xw+80,yw+20);
         glEnd();
+        glPopMatrix();
 }
 
 void smallBuilding(int locationX,int locationY){
+    glPushMatrix();
     glColor3ub(200,0,0);
     glBegin(GL_QUADS);
     glVertex2i(locationX,locationY);
@@ -84,12 +87,17 @@ void smallBuilding(int locationX,int locationY){
     glVertex2i(locationX+100,locationY+150);
     glVertex2i(locationX+100,locationY);
     //buildWindow(locationX,locationY);
+    buildWindow(locationX,locationY);
+    buildWindow(locationX,locationY+45);
+    buildWindow(locationX,locationY+90);
 
     glEnd();
+    glPopMatrix();
 
 }
 
 void bigBuilding(int locationX,int locationY){
+    glPushMatrix();
     glColor3ub(200,0,0);
     glBegin(GL_QUADS);
     glVertex2i(locationX,locationY);
@@ -97,8 +105,13 @@ void bigBuilding(int locationX,int locationY){
     glVertex2i(locationX+100,locationY+250);
     glVertex2i(locationX+100,locationY);
     //buldingWindow(locationX,locationX+100,locationY,locationY+250);
-   // buldingWindow(600,600);
+    buildWindow(locationX,locationY);
+    buildWindow(locationX,locationY+45);
+    buildWindow(locationX,locationY+90);
+    buildWindow(locationX,locationY+135);
+    buildWindow(locationX,locationY+180);
     glEnd();
+    glPopMatrix();
 
 }
 
@@ -120,7 +133,7 @@ void road(int locationX ,int locationY){
     glVertex2i(locationX+1000,locationY+270);
     glVertex2i(locationX+1000,locationY);
     glEnd();
-    glColor3ub(200,20,20);
+    glColor3ub(250,250,250);
     glBegin(GL_QUADS);
     glVertex2i(locationX,locationY+270);
     glVertex2i(locationX,locationY+290);
@@ -134,7 +147,7 @@ void road(int locationX ,int locationY){
     glEnd();
 
     for(int i=0;i<=1000;i+=100){
-         glColor3ub(250,250,250);
+         glColor3ub(200,200,200);
          glBegin(GL_QUADS);
          glVertex2i(i,locationY+140);
          glVertex2i(i,locationY+160);
@@ -144,35 +157,47 @@ void road(int locationX ,int locationY){
          glEnd();
          i=i+20;
     }
+    for(int i=0;i<=1000;i+=100){
+         glColor3ub(5,5,5);
+         glBegin(GL_QUADS);
+         glVertex2i(i,locationY+270);
+         glVertex2i(i,locationY+290);
+         glVertex2i(i+100,locationY+290);
+         glVertex2i(i+100,locationY+270);
+
+         glVertex2i(i,locationY);
+        glVertex2i(i,locationY-20);
+        glVertex2i(i+100,locationY-20);
+        glVertex2i(i+100,locationY);
+
+         glEnd();
+         i=i+89;
+    }
 }
 
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
+	glPushMatrix();
     separaratorTopBuildingLine(600);
     separaratorTopBuildingLine(300);
     smallBuilding(600,600);
-    buildWindow(600,600);
-    buildWindow(600,645);
-    buildWindow(600,690);
+    smallBuilding(750,600);
+     bigBuilding(880,600);
+     smallBuilding(30,600);
+
 
     //buldingWindow(600,600+100,600,600+150);
     bigBuilding(300,600);
-    buildWindow(300,600);
-    buildWindow(300,645);
-    buildWindow(300,690);
-    buildWindow(300,735);
-    buildWindow(300,780);
+    smallBuilding(450,600);
 
-    bigBuilding(100,600);
-    buildWindow(100,600);
-    buildWindow(100,645);
-    buildWindow(100,690);
-    buildWindow(100,735);
-    buildWindow(100,780);
+
+    bigBuilding(150,600);
+
 
     river(0,300);
 
     road(0,20);
+    glPopMatrix();
 
 
     glFlush();
