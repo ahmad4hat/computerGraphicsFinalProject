@@ -8,8 +8,11 @@
 
 using namespace std;
 
+float _run3 = 0.0;
+
 
 int buildingWindowColor[]={240,200,100};
+int cloudColor[]={255,255,255};
 
 void init(){
 
@@ -175,6 +178,212 @@ void road(int locationX ,int locationY){
     }
 }
 
+void cloud(){
+   ///Cloud
+
+    glPushMatrix();
+    glTranslatef(_run3, 0.0, 0.0);
+
+    glPushMatrix();
+    glTranslatef(200, 800, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=40;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(180, 750, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=50;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(250, 800, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=40;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(230, 750, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=50;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+//cloud 2
+    glPushMatrix();
+    glTranslatef(350, 100, 0);
+    glPushMatrix();
+    glTranslatef(200, 800, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=40;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(180, 750, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=50;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(250, 800, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=50;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(230, 750, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=50;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(300, 800, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=40;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+     glPushMatrix();
+    glTranslatef(290, 760, 0);
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/200;
+		float r=40;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x,y );
+	}
+	glEnd();
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+//end of cloud
+
+}
+
+void sunOrMoon(){
+glBegin(GL_TRIANGLE_FAN);
+int x=50;
+int y=500;
+		glColor3ub(255,0,0);
+		for(int i=0;i<=2*3.14;i+=0.0001)
+		{
+			x=0.1*sin(i);
+			y=0.1*cos(i);
+			glVertex2f(x,y);
+		}
+	glEnd();
+}
+
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPushMatrix();
@@ -199,9 +408,24 @@ void display(){
     road(0,20);
     glPopMatrix();
 
+    cloud();
+    //sunOrMoon();
+
 
     glFlush();
+}
+void update(int value) {
 
+
+
+     _run3 += 0.8f;
+	if (_run3 > 1000)
+    {
+        _run3 -= 1700;
+    }
+
+	glutPostRedisplay(); //Tell GLUT that the display has changed
+	glutTimerFunc(25, update, 0);
 }
 
 
@@ -227,7 +451,7 @@ int main(int argc,char **argv)
 	//glutInitWindowPosition(0,0);
 	glutDisplayFunc(display);
 	//glutKeyboardFunc(myKeyboard);
-	//glutTimerFunc(25, update, 0);
+	glutTimerFunc(25, update, 0);
 	init();
 	glutMainLoop();
 	return 0;
