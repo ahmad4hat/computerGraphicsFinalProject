@@ -29,42 +29,51 @@ void separaratorTopBuildingLine(int y){
 }
 
 
-void buldingWindow(int locationX,int xEnd,int locationY,int yEnd){
+//void buldingWindow(int locationX,int locationY){
+//    glColor3ub(buildingWindowColor[0],buildingWindowColor[1],buildingWindowColor[2]);
+////    int xct=xEnd-locationX;
+////    int yct=yEnd-locationY;
+//
+//
+//    glBegin(GL_QUADS);
+//
+//         glVertex2i((locationX+20),locationY+20);
+//        glVertex2i(locationX+20,locationY+50);
+//        glVertex2i(locationX+80,locationY+50);
+//        glVertex2i(locationX+80,locationY+20);
+//
+//        /*glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*10));
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*25));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*25));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*10));
+//
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*35));
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*50));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*50));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*35));
+//
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*60));
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*75));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*75));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*60));
+//
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*85));
+//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*95));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*95));
+//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*85));*/
+//
+//    glEnd();
+//
+//}
+
+void buildWindow(int xw,int yw){
     glColor3ub(buildingWindowColor[0],buildingWindowColor[1],buildingWindowColor[2]);
-    int xct=xEnd-locationX;
-    int yct=yEnd-locationY;
-
-    cout<<xct<<yct;
-
-    glBegin(GL_QUADS);
-
-        /*glVertex2i((locationX+20),locationY+20);
-        glVertex2i(locationX+20,locationY+50);
-        glVertex2i(locationX+80,locationY+50);
-        glVertex2i(locationX+80,locationY+20);*/
-
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*10));
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*25));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*25));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*10));
-
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*35));
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*50));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*50));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*35));
-
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*60));
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*75));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*75));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*60));
-
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*85));
-        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*95));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*95));
-        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*85));
-
-    glEnd();
-
+        glBegin(GL_QUADS);
+        glVertex2i((xw+20),yw+20);
+        glVertex2i(xw+20,yw+50);
+        glVertex2i(xw+80,yw+50);
+        glVertex2i(xw+80,yw+20);
+        glEnd();
 }
 
 void smallBuilding(int locationX,int locationY){
@@ -74,7 +83,8 @@ void smallBuilding(int locationX,int locationY){
     glVertex2i(locationX,locationY+150);
     glVertex2i(locationX+100,locationY+150);
     glVertex2i(locationX+100,locationY);
-    buldingWindow(locationX,locationX+100,locationY,locationY+150);
+    //buildWindow(locationX,locationY);
+
     glEnd();
 
 }
@@ -86,7 +96,8 @@ void bigBuilding(int locationX,int locationY){
     glVertex2i(locationX,locationY+250);
     glVertex2i(locationX+100,locationY+250);
     glVertex2i(locationX+100,locationY);
-    buldingWindow(locationX,locationX+100,locationY,locationY+250);
+    //buldingWindow(locationX,locationX+100,locationY,locationY+250);
+   // buldingWindow(600,600);
     glEnd();
 
 }
@@ -140,12 +151,29 @@ void display(){
     separaratorTopBuildingLine(600);
     separaratorTopBuildingLine(300);
     smallBuilding(600,600);
+    buildWindow(600,600);
+    buildWindow(600,645);
+    buildWindow(600,690);
+
+    //buldingWindow(600,600+100,600,600+150);
     bigBuilding(300,600);
+    buildWindow(300,600);
+    buildWindow(300,645);
+    buildWindow(300,690);
+    buildWindow(300,735);
+    buildWindow(300,780);
+
     bigBuilding(100,600);
+    buildWindow(100,600);
+    buildWindow(100,645);
+    buildWindow(100,690);
+    buildWindow(100,735);
+    buildWindow(100,780);
 
     river(0,300);
 
     road(0,20);
+
 
     glFlush();
 
