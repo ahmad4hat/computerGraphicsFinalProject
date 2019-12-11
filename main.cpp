@@ -369,23 +369,54 @@ void cloud(){
 //end of cloud
 
 }
+void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides )
+{
+    int numberOfVertices = numberOfSides + 2;
+
+    GLfloat twicePi = 2.0f * M_PI;
+
+    GLfloat circleVerticesX[numberOfVertices];
+    GLfloat circleVerticesY[numberOfVertices];
+    GLfloat circleVerticesZ[numberOfVertices];
+
+    circleVerticesX[0] = x;
+    circleVerticesY[0] = y;
+    circleVerticesZ[0] = z;
+
+    for ( int i = 1; i < numberOfVertices; i++ )
+    {
+        circleVerticesX[i] = x + ( radius * cos( i *  twicePi / numberOfSides ) );
+        circleVerticesY[i] = y + ( radius * sin( i * twicePi / numberOfSides ) );
+        circleVerticesZ[i] = z;
+    }
+
+    GLfloat allCircleVertices[( numberOfVertices ) * 3];
+
+    for ( int i = 0; i < numberOfVertices; i++ )
+    {
+        allCircleVertices[i * 3] = circleVerticesX[i];
+        allCircleVertices[( i * 3 ) + 1] = circleVerticesY[i];
+        allCircleVertices[( i * 3 ) + 2] = circleVerticesZ[i];
+    }
+
+    glEnableClientState( GL_VERTEX_ARRAY );
+    glVertexPointer( 3, GL_FLOAT, 0, allCircleVertices );
+    glDrawArrays( GL_TRIANGLE_FAN, 0, numberOfVertices);
+    glDisableClientState( GL_VERTEX_ARRAY );
+}
 
 void sunOrMoon(){
-glBegin(GL_TRIANGLE_FAN);
-int x=50;
-int y=500;
-		glColor3ub(255,0,0);
-		for(int i=0;i<=2*3.14;i+=0.0001)
-		{
-			x=0.1*sin(i);
-			y=0.1*cos(i);
-			glVertex2f(x,y);
-		}
-	glEnd();
+    glColor3ub(240,200,100);
+     drawCircle( 800, 920, 0, 65, 1000 );
+
 }
 
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
+	glPushMatrix();
+	sunOrMoon();
+	glPopMatrix();
+
 	glPushMatrix();
     separaratorTopBuildingLine(600);
     separaratorTopBuildingLine(300);
@@ -409,7 +440,6 @@ void display(){
     glPopMatrix();
 
     cloud();
-    //sunOrMoon();
 
 
     glFlush();
