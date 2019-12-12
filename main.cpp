@@ -9,6 +9,7 @@
 using namespace std;
 
 float _run3 = 0.0;
+float _carMovie=0.0;
 
 
 int buildingWindowColor[]={240,200,100};
@@ -178,6 +179,20 @@ void road(int locationX ,int locationY){
          glEnd();
          i=i+89;
     }
+}
+
+void carOne (){
+    glPushMatrix();
+    glTranslatef(_carMovie, 0.0, 0.0);
+    glColor3ub(128,128,128);
+    glBegin(GL_QUADS);
+         glVertex2i(20,50);
+         glVertex2i(20,100);
+         glVertex2i(70,100);
+         glVertex2i(70,50);
+
+    glEnd();
+    glPopMatrix();
 }
 
 void cloud(){
@@ -442,12 +457,18 @@ void display(){
     glPopMatrix();
 
     cloud();
+    carOne();
 
 
     glFlush();
 }
 void update(int value) {
 
+    _carMovie += 3.8f;
+	if (_carMovie > 1000)
+    {
+        _carMovie -= 1700;
+    }
 
 
      _run3 += 0.8f;
@@ -490,14 +511,8 @@ void myKeyboard(unsigned char key, int x, int y){
 
 int main(int argc,char **argv)
 {
-    cout << endl << "*********** Natural View Of A Village ********************" << endl << endl;
+    cout << endl << "*** BUSY CITY  ********************" << endl << endl;
 
-    cout << "Press D : To Forward the Train" << endl << endl;
-    cout << "Press A : To Backward the Train" << endl << endl;
-    cout << "Press S : To Stop the Train" << endl << endl;
-
-    cout << "Press R : For Rain " << endl << endl;
-    cout << "Press E : For Stop Rain" << endl << endl;
 
     cout << "Press N : For Night " << endl << endl;
     cout << "Press B : For Day" << endl << endl;
@@ -505,7 +520,7 @@ int main(int argc,char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE| GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(1800, 1200);
-	glutCreateWindow("Natural View Of A Village");     // creating the window
+	glutCreateWindow("BUSY CITY");     // creating the window
 	//glutFullScreen();       // making the window full screen
 	//glutInitWindowPosition(0,0);
 	glutDisplayFunc(display);
