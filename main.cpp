@@ -139,13 +139,15 @@ void road(int locationX ,int locationY){
     glVertex2i(locationX+1000,locationY+270);
     glVertex2i(locationX+1000,locationY);
     glEnd();
-    glColor3ub(250,250,250);
+     glColor3ub(160,100,50);
     glBegin(GL_QUADS);
     glVertex2i(locationX,locationY+270);
     glVertex2i(locationX,locationY+290);
     glVertex2i(locationX+1000,locationY+290);
     glVertex2i(locationX+1000,locationY+270);
 
+
+   
     glVertex2i(locationX,locationY);
     glVertex2i(locationX,locationY-20);
     glVertex2i(locationX+1000,locationY-20);
@@ -163,21 +165,21 @@ void road(int locationX ,int locationY){
          glEnd();
          i=i+20;
     }
-    for(int i=0;i<=1000;i+=100){
-         glColor3ub(5,5,5);
+    for(int i=0;i<=1000;i+=50){
+         glColor3ub(240,240,240);
          glBegin(GL_QUADS);
          glVertex2i(i,locationY+270);
          glVertex2i(i,locationY+290);
-         glVertex2i(i+100,locationY+290);
-         glVertex2i(i+100,locationY+270);
+         glVertex2i(i+20,locationY+290);
+         glVertex2i(i+20,locationY+270);
 
          glVertex2i(i,locationY);
         glVertex2i(i,locationY-20);
-        glVertex2i(i+100,locationY-20);
-        glVertex2i(i+100,locationY);
+        glVertex2i(i+20,locationY-20);
+        glVertex2i(i+20,locationY);
 
          glEnd();
-         i=i+89;
+         //i=i+20;
     }
 }
 
@@ -186,10 +188,10 @@ void carOne (){
     glTranslatef(_carMovie, 0.0, 0.0);
     glColor3ub(128,128,128);
     glBegin(GL_QUADS);
-         glVertex2i(20,50);
-         glVertex2i(20,100);
-         glVertex2i(70,100);
-         glVertex2i(70,50);
+         glVertex2i(20,350);
+         glVertex2i(20,400);
+         glVertex2i(70,400);
+         glVertex2i(70,350);
 
     glEnd();
     glPopMatrix();
@@ -451,9 +453,9 @@ void display(){
     bigBuilding(150,600);
 
 
-    river(0,300);
+    river(0,0);
 
-    road(0,20);
+    road(0,320);
     glPopMatrix();
 
     cloud();
