@@ -268,6 +268,26 @@ void carOne()
     glPopMatrix();
 }
 
+void mountain(int mountainStartPointX, int red, int green, int blue)
+{
+    glPushMatrix();
+
+    glBegin(GL_TRIANGLES);
+
+    glColor3ub(red, green - 10, blue);
+    glVertex2i(mountainStartPointX, 600);
+
+    glColor3ub(red, green + 5, blue);
+    glVertex2i(mountainStartPointX + 150, 900);
+
+    glColor3ub(red, green - 10, blue);
+    glVertex2i(mountainStartPointX + 300, 600);
+
+    glEnd();
+
+    glPopMatrix();
+}
+
 void cloud()
 {
     ///Cloud
@@ -462,8 +482,16 @@ void sunOrMoon()
 
 void display()
 {
+
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
+
+    int mountainColor1[] = {2, 210, 6};
+    mountain(500, 30, 240, 70);
+    mountain(10, 2, 210, 6);
+    mountain(370, 2, 210, 6);
+    mountain(770, 2, 210, 6);
+
     sunOrMoon();
     glPopMatrix();
 
@@ -494,7 +522,7 @@ void display()
 void update(int value)
 {
 
-    // _carMoving += 3.8f;
+    _carMoving += 3.8f;
     if (_carMoving > 1000)
     {
         _carMoving -= 1700;
