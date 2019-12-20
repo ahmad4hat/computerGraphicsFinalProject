@@ -9,7 +9,9 @@
 using namespace std;
 
 float _run3 = 0.0;
-float _carMoving = 0.0;
+float _teslaCyberTruckMoving = 0.0;
+
+float _teslaCyberTruckUpdateValue = 3.7;
 
 int buildingWindowColor[] = {240, 200, 100};
 int sunOrMoonColor[] = {200, 200, 200};
@@ -69,43 +71,6 @@ void separaratorTopBuildingLine(int y)
     glEnd();
 }
 
-//void buldingWindow(int locationX,int locationY){
-//    glColor3ub(buildingWindowColor[0],buildingWindowColor[1],buildingWindowColor[2]);
-////    int xct=xEnd-locationX;
-////    int yct=yEnd-locationY;
-//
-//
-//    glBegin(GL_QUADS);
-//
-//         glVertex2i((locationX+20),locationY+20);
-//        glVertex2i(locationX+20,locationY+50);
-//        glVertex2i(locationX+80,locationY+50);
-//        glVertex2i(locationX+80,locationY+20);
-//
-//        /*glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*10));
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*25));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*25));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*10));
-//
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*35));
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*50));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*50));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*35));
-//
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*60));
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*75));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*75));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*60));
-//
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*85));
-//        glVertex2i(locationX+((xct/100)*20),locationY+((yct/100)*95));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*95));
-//        glVertex2i(locationX+((xct/100)*80),locationY+((yct/100)*85));*/
-//
-//    glEnd();
-//
-//}
-
 void buildWindow(int xw, int yw)
 {
     glPushMatrix();
@@ -122,7 +87,7 @@ void buildWindow(int xw, int yw)
 void smallBuilding(int locationX, int locationY)
 {
     glPushMatrix();
-    glColor3ub(200, 0, 0);
+    glColor3ub(80, 80, 80);
     glBegin(GL_QUADS);
     glVertex2i(locationX, locationY);
     glVertex2i(locationX, locationY + 150);
@@ -140,7 +105,7 @@ void smallBuilding(int locationX, int locationY)
 void bigBuilding(int locationX, int locationY)
 {
     glPushMatrix();
-    glColor3ub(200, 0, 0);
+    glColor3ub(80, 80, 80);
     glBegin(GL_QUADS);
     glVertex2i(locationX, locationY);
     glVertex2i(locationX, locationY + 250);
@@ -219,29 +184,44 @@ void road(int locationX, int locationY)
     }
 }
 
-void carOne()
+// test cyber truck
+void teslaCyberTruck()
 {
     glPushMatrix();
-    glTranslatef(_carMoving, 0.0, 0.0);
+    glTranslatef(_teslaCyberTruckMoving, 0.0, 0.0);
     glColor3ub(128, 128, 128);
-    glBegin(GL_QUADS);
-    //  glVertex2i(20,350);
-    //  glVertex2i(20,400);
-    //  glVertex2i(70,400);
-    //  glVertex2i(70,350);
 
     //base
+    glBegin(GL_QUADS);
     glVertex2i(100, 370);
     glVertex2i(100, 400);
     glVertex2i(10, 410);
     glVertex2i(15, 370);
     glEnd();
 
+    //base black bottom
+    glBegin(GL_QUADS);
+    glColor3ub(15, 15, 15);
+    glVertex2i(100, 370);
+    glVertex2i(100, 380);
+    glVertex2i(10, 381);
+    glVertex2i(15, 370);
+    glEnd();
+
     //upper triangle
     glBegin(GL_TRIANGLES);
+    glColor3ub(128, 128, 128);
     glVertex2i(10, 410);
     glVertex2i(40, 440);
     glVertex2i(100, 400);
+    glEnd();
+
+    //font window
+    glBegin(GL_TRIANGLES);
+    glColor3ub(200, 200, 200);
+    glVertex2i(45, 410);
+    glVertex2i(45, 430);
+    glVertex2i(85, 410);
     glEnd();
 
     //lines base and upper triangle
@@ -488,6 +468,8 @@ void display()
 
     int mountainColor1[] = {2, 210, 6};
     mountain(500, 30, 240, 70);
+    mountain(200, 30, 240, 70);
+    mountain(-100, 30, 240, 70);
     mountain(10, 2, 210, 6);
     mountain(370, 2, 210, 6);
     mountain(770, 2, 210, 6);
@@ -515,17 +497,17 @@ void display()
     glPopMatrix();
 
     cloud();
-    carOne();
+    teslaCyberTruck();
 
     glFlush();
 }
 void update(int value)
 {
 
-    _carMoving += 3.8f;
-    if (_carMoving > 1000)
+    _teslaCyberTruckMoving += _teslaCyberTruckUpdateValue;
+    if (_teslaCyberTruckMoving > 1000)
     {
-        _carMoving -= 1700;
+        _teslaCyberTruckMoving -= 1700;
     }
 
     _run3 += 0.8f;
@@ -560,6 +542,13 @@ void myKeyboard(unsigned char key, int x, int y)
         sunOrMoonColor[2] = 200;
 
         break;
+    case 's':
+        _teslaCyberTruckUpdateValue = 0.0;
+        break;
+
+    case 'p':
+        _teslaCyberTruckUpdateValue = 3.7;
+        break;
 
     default:
         break;
@@ -575,6 +564,10 @@ int main(int argc, char **argv)
     cout << "Press N : For Night " << endl
          << endl;
     cout << "Press B : For Day" << endl
+         << endl;
+    cout << "Press S : For stop" << endl
+         << endl;
+    cout << "Press P : For start" << endl
          << endl;
 
     glutInit(&argc, argv);
