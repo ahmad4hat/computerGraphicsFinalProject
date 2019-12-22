@@ -164,15 +164,16 @@ void ship1()
     glVertex2i(580, 40);
     glVertex2i(580, 80);
     glVertex2i(60, 80);
+    glEnd();
 
-    /*glBegin(GL_TRIANGLES);  ///front curve
-	glColor3ub(169, 181, 183);
+    glBegin(GL_TRIANGLES); ///front curve
+    glColor3ub(15, 35, 115);
 
-    glVertex2f(580,120);
-    glVertex2f(520,40);
-    glVertex2f(600,120);
+    glVertex2f(570, 120);
+    glVertex2f(570, 40);
+    glVertex2f(650, 120);
 
-    glEnd();*/
+    glEnd();
 
     glBegin(GL_QUADS); ///1st floor
     glColor3ub(15, 35, 115);
@@ -236,8 +237,26 @@ void ship1()
     glVertex2i(400, 360);
     glVertex2i(400, 380);
     glVertex2i(380, 380);
-
     glEnd();
+
+    glBegin(GL_QUADS); // flag pole
+    glVertex2i(560, 120);
+    glVertex2i(560, 240);
+    glVertex2i(565, 240);
+    glVertex2i(565, 120);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3ub(0, 240, 0);
+    glVertex2i(560, 160);
+    glVertex2i(560, 240);
+    glVertex2i(505, 240);
+    glVertex2i(505, 160);
+    glEnd();
+
+    glColor3ub(240, 0, 0);
+    drawCircle(533, 200, 0, 20, 1000);
+
     glPopMatrix(); //ei ta den nai ei karone porblem hoisilo
 
     //ship1 ends
