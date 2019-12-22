@@ -5,6 +5,7 @@
 #include <math.h>
 #include <windows.h>
 #include <mmsystem.h>
+#define PI 3.14159265358979323846
 
 using namespace std;
 
@@ -12,6 +13,9 @@ float _run3 = 0.0;
 float _teslaCyberTruckMoving = 0.0;
 
 float _teslaCyberTruckUpdateValue = 3.7;
+
+float _busMoving = 1000.0;
+float _busMovingUpdate = -3.7;
 
 int buildingWindowColor[] = {240, 200, 100};
 int sunOrMoonColor[] = {200, 200, 200};
@@ -244,6 +248,47 @@ void teslaCyberTruck()
     drawCircle(85, 370, 0, 10, 100);
     glColor3ub(240, 240, 240);
     drawCircle(85, 370, 0, 7, 100);
+
+    glPopMatrix();
+}
+
+void bus(int busStartLocation)
+{
+    glPushMatrix();
+    glTranslatef(_busMoving, 0.0f, 0.0f);
+
+    //base
+    glColor3ub(200, 10, 10);
+    glBegin(GL_QUADS);
+    glVertex2i(busStartLocation, 505);
+    glVertex2i(busStartLocation, 570);
+    glVertex2i(busStartLocation + 190, 570);
+    glVertex2i(busStartLocation + 190, 505);
+    glEnd();
+
+    //windows
+
+    for (int i = busStartLocation; i < (busStartLocation + 160); i = i + 20)
+    {
+        glColor3ub(200, 200, 200);
+        glBegin(GL_QUADS);
+        glVertex2i(i, 537);
+        glVertex2i(i, 569);
+        glVertex2i(i + 20, 569);
+        glVertex2i(i + 20, 537);
+        glEnd();
+
+        i = i + 10;
+    }
+
+    //circle
+    glColor3ub(20, 20, 20);
+    drawCircle(busStartLocation + 30, 505, 0, 20, 100);
+    drawCircle(busStartLocation + 160, 505, 0, 20, 100);
+
+    glColor3ub(220, 220, 220);
+    drawCircle(busStartLocation + 30, 505, 0, 17, 100);
+    drawCircle(busStartLocation + 160, 505, 0, 17, 100);
 
     glPopMatrix();
 }
@@ -498,6 +543,8 @@ void display()
 
     cloud();
     teslaCyberTruck();
+    bus(60);
+    bus(400);
 
     glFlush();
 }
@@ -508,6 +555,13 @@ void update(int value)
     if (_teslaCyberTruckMoving > 1000)
     {
         _teslaCyberTruckMoving -= 1700;
+    }
+
+    _busMoving += _busMovingUpdate;
+
+    if (_busMoving < -700)
+    {
+        _busMoving = +1700;
     }
 
     _run3 += 0.8f;
