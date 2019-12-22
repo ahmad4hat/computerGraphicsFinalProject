@@ -14,6 +14,11 @@ float _teslaCyberTruckMoving = 0.0;
 
 float _teslaCyberTruckUpdateValue = 3.7;
 
+float _shipMoving = 0.0;
+float _ship1Moving = 0.0;
+
+float _ship1UpdateValue = 3.7;
+
 float _busMoving = 1000.0;
 float _busMovingUpdate = -3.7;
 
@@ -135,6 +140,115 @@ void river(int locationX, int locationY)
     glVertex2i(locationX + 1000, locationY);
     glEnd();
 }
+void ship1()
+{
+    glPushMatrix();
+    glTranslatef(_ship1Moving, 0.0, 0.0);
+    //glColor3ub(0, 0, 0);
+
+    ///ship1
+    glBegin(GL_QUADS);
+    glColor3ub(1, 1, 1);
+    glPointSize(5.0);
+
+    glBegin(GL_QUADS); ///lower part
+    glColor3ub(15, 35, 115);
+    glVertex2i(60, 90);
+    glVertex2i(580, 90);
+    glVertex2i(580, 120);
+    glVertex2i(60, 120);
+
+    glBegin(GL_QUADS); ///second part
+    glColor3ub(15, 35, 115);
+    glVertex2i(60, 40);
+    glVertex2i(580, 40);
+    glVertex2i(580, 80);
+    glVertex2i(60, 80);
+
+    /*glBegin(GL_TRIANGLES);  ///front curve
+	glColor3ub(169, 181, 183);
+
+    glVertex2f(580,120);
+    glVertex2f(520,40);
+    glVertex2f(600,120);
+
+    glEnd();*/
+
+    glBegin(GL_QUADS); ///1st floor
+    glColor3ub(15, 35, 115);
+    glVertex2i(90, 120);
+    glVertex2i(500, 120);
+    glVertex2i(500, 220);
+    glVertex2i(90, 220);
+
+    glBegin(GL_QUADS); ///window
+    glColor3ub(232, 228, 125);
+    glVertex2i(110, 130);
+    glVertex2i(220, 130);
+    glVertex2i(220, 200);
+    glVertex2i(110, 200);
+
+    glBegin(GL_QUADS); ///window
+    glColor3ub(232, 228, 125);
+    glVertex2i(230, 130);
+    glVertex2i(330, 130);
+    glVertex2i(330, 200);
+    glVertex2i(230, 200);
+
+    glBegin(GL_QUADS); ///window
+    glColor3ub(232, 228, 125);
+    glVertex2i(340, 130);
+    glVertex2i(460, 130);
+    glVertex2i(460, 200);
+    glVertex2i(340, 200);
+
+    glBegin(GL_QUADS); ///second floor
+    glColor3ub(15, 35, 115);
+    glVertex2i(180, 220);
+    glVertex2i(450, 220);
+    glVertex2i(450, 320);
+    glVertex2i(180, 320);
+
+    glBegin(GL_QUADS); ///window
+    glColor3ub(232, 228, 125);
+    glVertex2i(200, 230);
+    glVertex2i(290, 230);
+    glVertex2i(290, 310);
+    glVertex2i(200, 310);
+
+    glBegin(GL_QUADS); ///window
+    glColor3ub(232, 228, 125);
+    glVertex2i(300, 230);
+    glVertex2i(420, 230);
+    glVertex2i(420, 310);
+    glVertex2i(300, 310);
+
+    glBegin(GL_QUADS); ///3rd floor
+    glColor3ub(15, 35, 115);
+    glVertex2i(300, 320);
+    glVertex2i(420, 320);
+    glVertex2i(420, 360);
+    glVertex2i(300, 360);
+
+    glBegin(GL_QUADS); ///last floor
+    glColor3ub(15, 35, 115);
+    glVertex2i(380, 360);
+    glVertex2i(400, 360);
+    glVertex2i(400, 380);
+    glVertex2i(380, 380);
+
+    glEnd();
+    glPopMatrix(); //ei ta den nai ei karone porblem hoisilo
+
+    //ship1 ends
+}
+
+/*void ship2() {
+    glPushMatrix();
+    glTranslatef(_ship1Moving, 0.0, 0.0);
+    glColor3ub(0, 0, 0);;
+}*/
+
 void road(int locationX, int locationY)
 {
     glColor3ub(80, 80, 80);
@@ -542,7 +656,9 @@ void display()
     glPopMatrix();
 
     cloud();
+    ship1();
     teslaCyberTruck();
+
     bus(60);
     bus(400);
 
@@ -550,6 +666,11 @@ void display()
 }
 void update(int value)
 {
+    _ship1Moving += _ship1UpdateValue;
+    if (_ship1Moving > 1000)
+    {
+        _ship1Moving -= 1700;
+    }
 
     _teslaCyberTruckMoving += _teslaCyberTruckUpdateValue;
     if (_teslaCyberTruckMoving > 1000)
