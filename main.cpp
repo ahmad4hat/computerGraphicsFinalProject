@@ -239,6 +239,8 @@ void ship1()
     glVertex2i(380, 380);
     glEnd();
 
+    //flag
+
     glBegin(GL_QUADS); // flag pole
     glVertex2i(560, 120);
     glVertex2i(560, 240);
@@ -246,7 +248,7 @@ void ship1()
     glVertex2i(565, 120);
     glEnd();
 
-    glBegin(GL_QUADS);
+    glBegin(GL_QUADS); //falg
     glColor3ub(0, 240, 0);
     glVertex2i(560, 160);
     glVertex2i(560, 240);
@@ -256,6 +258,7 @@ void ship1()
 
     glColor3ub(240, 0, 0);
     drawCircle(533, 200, 0, 20, 1000);
+    //flag ends
 
     glPopMatrix(); //ei ta den nai ei karone porblem hoisilo
 
