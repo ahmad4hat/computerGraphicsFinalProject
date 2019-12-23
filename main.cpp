@@ -9,14 +9,15 @@
 
 using namespace std;
 
-float _run3 = 0.0;
-float _teslaCyberTruckMoving = 0.0;
+bool isRaining = false;
 
+float _run3 = 0.0;
+
+float _teslaCyberTruckMoving = 0.0;
 float _teslaCyberTruckUpdateValue = 3.7;
 
 float _shipMoving = 0.0;
 float _ship1Moving = 0.0;
-
 float _ship1UpdateValue = 3.7;
 
 float _busMoving = 1000.0;
@@ -24,6 +25,12 @@ float _busMovingUpdate = -3.7;
 
 int buildingWindowColor[] = {240, 200, 100};
 int sunOrMoonColor[] = {200, 200, 200};
+
+float _rainValueY = 0.0;
+float _rainUpdateValueY = 2.7;
+
+float _rainValueX = 0.0;
+float _rainUpdateValueX = 2.7;
 
 int cloudColor[] = {255, 255, 255};
 
@@ -90,6 +97,30 @@ void buildWindow(int xw, int yw)
     glVertex2i(xw + 80, yw + 50);
     glVertex2i(xw + 80, yw + 20);
     glEnd();
+    glPopMatrix();
+}
+
+void rain()
+{
+    glPushMatrix();
+
+    glTranslatef(-(_rainValueY / 4), -_rainValueY, 0.0);
+    for (int i = 0; i < 1500; i += 10)
+    {
+        for (int j = 0; j < 10000; j += 10)
+        {
+
+            glBegin(GL_LINES);
+
+            glVertex2i(i, j);
+            glVertex2i(i + 10, j + 10);
+
+            glEnd();
+            j += 10;
+        }
+
+        i += 10;
+    }
     glPopMatrix();
 }
 
@@ -684,10 +715,22 @@ void display()
     bus(60);
     bus(400);
 
+    if (isRaining)
+    {
+        rain();
+    }
+
     glFlush();
 }
 void update(int value)
 {
+    _rainValueY += _rainUpdateValueY;
+
+    if (_rainValueY > 1000)
+    {
+        _rainValueY = 300;
+    }
+
     _ship1Moving += _ship1UpdateValue;
     if (_ship1Moving > 1000)
     {
@@ -746,6 +789,9 @@ void myKeyboard(unsigned char key, int x, int y)
     case 'p':
         _teslaCyberTruckUpdateValue = 3.7;
         break;
+    case 'r':
+        isRaining = !isRaining;
+        break;
 
     default:
         break;
@@ -765,6 +811,8 @@ int main(int argc, char **argv)
     cout << "Press S : For stop" << endl
          << endl;
     cout << "Press P : For start" << endl
+         << endl;
+    cout << "Press R : For controlling rain" << endl
          << endl;
 
     glutInit(&argc, argv);

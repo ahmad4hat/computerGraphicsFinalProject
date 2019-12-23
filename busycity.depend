@@ -346,7 +346,7 @@
 1562429450 c:\mingw\include\math.h
 	<_mingw.h>
 
-1576257985 source:c:\users\ahmad\desktop\computergraphicsfinalproject\main.cpp
+1577077080 source:c:\users\ahmad\desktop\computergraphicsfinalproject\main.cpp
 	<iostream>
 	<GL/gl.h>
 	<GL/glut.h>
