@@ -21,7 +21,7 @@ float _teslaCyberTruckUpdateValue = 3.7;
 
 float _shipMoving = 0.0;
 float _ship1Moving = 0.0;
-float _ship1UpdateValue = 3.7;
+float _ship1UpdateValue = 1.7;
 
 float _busMoving = 1000.0;
 float _busMovingUpdate = -3.7;
@@ -107,6 +107,7 @@ void rain()
 {
     glPushMatrix();
 
+    glColor3ub(230, 230, 230);
     glTranslatef(-(_rainValueY / 4), -_rainValueY, 0.0);
     for (int i = 0; i < 1500; i += 10)
     {
