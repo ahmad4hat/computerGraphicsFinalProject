@@ -679,7 +679,7 @@ void sunOrMoon()
 void plane()
 {
     glPushMatrix();
-    glTranslatef(_teslaCyberTruckMoving, 0.0f, 0.0f);
+    glTranslatef(_planeMoving, 0.0f, 0.0f);
     glColor3ub(240, 240, 240);
 
     glBegin(GL_QUADS); //base //plane
