@@ -746,6 +746,7 @@ void display()
     mountain(10, 2, 210, 6);
     mountain(370, 2, 210, 6);
     mountain(770, 2, 210, 6);
+    cloud();
 
     glPopMatrix();
 
@@ -768,7 +769,6 @@ void display()
     road(0, 320);
     glPopMatrix();
 
-    cloud();
     ship1();
     teslaCyberTruck();
 
