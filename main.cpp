@@ -13,6 +13,9 @@ bool isRaining = false;
 
 float _run3 = 0.0;
 
+float _planeMoving = 0.0;
+float _planeMovingUpdate = 7.5;
+
 float _teslaCyberTruckMoving = 0.0;
 float _teslaCyberTruckUpdateValue = 3.7;
 
@@ -672,11 +675,68 @@ void sunOrMoon()
     drawCircle(800, 920, 0, 65, 1000);
 }
 
+void plane()
+{
+    glPushMatrix();
+    glTranslatef(_teslaCyberTruckMoving, 0.0f, 0.0f);
+    glColor3ub(240, 240, 240);
+
+    glBegin(GL_QUADS); //base //plane
+    glVertex2i(30, 920);
+    glVertex2i(220, 920);
+    glVertex2i(220, 990);
+    glVertex2i(30, 990);
+
+    glVertex2i(130, 920); // wing bottom
+    glVertex2i(120, 855);
+    glVertex2i(170, 855);
+    glVertex2i(180, 920);
+
+    glVertex2i(130, 990); // wing top
+    glVertex2i(120, 1045);
+    glVertex2i(170, 1045);
+    glVertex2i(180, 990);
+
+    glVertex2i(40, 990); // wing top
+    glVertex2i(35, 1025);
+    glVertex2i(65, 1025);
+    glVertex2i(70, 990);
+
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glVertex2i(30, 920);
+    glVertex2i(25, 955);
+    glVertex2i(30, 990);
+    glEnd();
+
+    drawCircle(220, 955, 0, 35, 1000); //plane font dom
+
+    //windows
+    glBegin(GL_QUADS);
+    glColor3ub(150, 150, 150);
+    for (int i = 40; i < 220; i += 20)
+    {
+        glVertex2i(i, 950);
+        glVertex2i(i + 20, 950);
+        glVertex2i(i + 20, 970);
+        glVertex2i(i, 970);
+
+        i = i + 20;
+    }
+    glEnd();
+
+    glPopMatrix();
+}
+
 void display()
 {
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
+
+    sunOrMoon();
+    plane();
 
     int mountainColor1[] = {2, 210, 6};
     mountain(500, 30, 240, 70);
@@ -686,7 +746,6 @@ void display()
     mountain(370, 2, 210, 6);
     mountain(770, 2, 210, 6);
 
-    sunOrMoon();
     glPopMatrix();
 
     glPushMatrix();
@@ -741,6 +800,12 @@ void update(int value)
     if (_teslaCyberTruckMoving > 1000)
     {
         _teslaCyberTruckMoving -= 1700;
+    }
+
+    _planeMoving += _planeMovingUpdate;
+    if (_planeMoving > 1000)
+    {
+        _planeMoving -= 1700;
     }
 
     _busMoving += _busMovingUpdate;
