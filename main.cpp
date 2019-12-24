@@ -10,6 +10,10 @@
 using namespace std;
 
 bool isRaining = false;
+int ngv = 0;
+
+int redLightColor[] = {100, 0, 0};
+int greenLightColor[] = {0, 100, 0};
 
 float _run3 = 0.0;
 
@@ -131,7 +135,7 @@ void rain()
 void smallBuilding(int locationX, int locationY)
 {
     glPushMatrix();
-    glColor3ub(80, 80, 80);
+    glColor3ub(80 - ngv, 80 - ngv, 80 - ngv);
     glBegin(GL_QUADS);
     glVertex2i(locationX, locationY);
     glVertex2i(locationX, locationY + 150);
@@ -149,7 +153,7 @@ void smallBuilding(int locationX, int locationY)
 void bigBuilding(int locationX, int locationY)
 {
     glPushMatrix();
-    glColor3ub(80, 80, 80);
+    glColor3ub(80 - ngv, 80 - ngv, 80 - ngv);
     glBegin(GL_QUADS);
     glVertex2i(locationX, locationY);
     glVertex2i(locationX, locationY + 250);
@@ -167,7 +171,7 @@ void bigBuilding(int locationX, int locationY)
 
 void river(int locationX, int locationY)
 {
-    glColor3ub(0, 150, 190);
+    glColor3ub(0, 150 - ngv, 190 - ngv);
     glBegin(GL_QUADS);
     glVertex2i(locationX, locationY);
     glVertex2i(locationX, locationY + 300);
@@ -187,14 +191,13 @@ void ship1()
     glPointSize(5.0);
 
     glBegin(GL_QUADS); ///lower part
-    glColor3ub(15, 35, 115);
+    glColor3ub(15 - ngv, 35 - ngv, 115 - ngv);
     glVertex2i(60, 90);
     glVertex2i(580, 90);
     glVertex2i(580, 120);
     glVertex2i(60, 120);
 
     glBegin(GL_QUADS); ///second part
-    glColor3ub(15, 35, 115);
     glVertex2i(60, 40);
     glVertex2i(580, 40);
     glVertex2i(580, 80);
@@ -202,7 +205,6 @@ void ship1()
     glEnd();
 
     glBegin(GL_TRIANGLES); ///front curve
-    glColor3ub(15, 35, 115);
 
     glVertex2f(570, 120);
     glVertex2f(570, 40);
@@ -211,7 +213,6 @@ void ship1()
     glEnd();
 
     glBegin(GL_QUADS); ///1st floor
-    glColor3ub(15, 35, 115);
     glVertex2i(90, 120);
     glVertex2i(500, 120);
     glVertex2i(500, 220);
@@ -239,7 +240,7 @@ void ship1()
     glVertex2i(340, 200);
 
     glBegin(GL_QUADS); ///second floor
-    glColor3ub(15, 35, 115);
+    glColor3ub(15 - ngv, 35 - ngv, 115 - ngv);
     glVertex2i(180, 220);
     glVertex2i(450, 220);
     glVertex2i(450, 320);
@@ -260,14 +261,14 @@ void ship1()
     glVertex2i(300, 310);
 
     glBegin(GL_QUADS); ///3rd floor
-    glColor3ub(15, 35, 115);
+    glColor3ub(15 - ngv, 35 - ngv, 115 - ngv);
     glVertex2i(300, 320);
     glVertex2i(420, 320);
     glVertex2i(420, 360);
     glVertex2i(300, 360);
 
     glBegin(GL_QUADS); ///last floor
-    glColor3ub(15, 35, 115);
+    glColor3ub(15 - ngv, 35 - ngv, 115 - ngv);
     glVertex2i(380, 360);
     glVertex2i(400, 360);
     glVertex2i(400, 380);
@@ -284,14 +285,14 @@ void ship1()
     glEnd();
 
     glBegin(GL_QUADS); //falg
-    glColor3ub(0, 240, 0);
+    glColor3ub(0, 240 - ngv, 0);
     glVertex2i(560, 160);
     glVertex2i(560, 240);
     glVertex2i(505, 240);
     glVertex2i(505, 160);
     glEnd();
 
-    glColor3ub(240, 0, 0);
+    glColor3ub(240 - ngv, 0, 0);
     drawCircle(533, 200, 0, 20, 1000);
     //flag ends
 
@@ -308,7 +309,7 @@ void ship1()
 
 void road(int locationX, int locationY)
 {
-    glColor3ub(80, 80, 80);
+    glColor3ub(80 - ngv, 80 - ngv, 80 - ngv);
     glBegin(GL_QUADS);
     glVertex2i(locationX, locationY);
     glVertex2i(locationX, locationY + 270);
@@ -330,7 +331,7 @@ void road(int locationX, int locationY)
 
     for (int i = 0; i <= 1000; i += 100)
     {
-        glColor3ub(200, 200, 200);
+        glColor3ub(200 - ngv, 200 - ngv, 200 - ngv);
         glBegin(GL_QUADS);
         glVertex2i(i, locationY + 140);
         glVertex2i(i, locationY + 160);
@@ -342,7 +343,7 @@ void road(int locationX, int locationY)
     }
     for (int i = 0; i <= 1000; i += 50)
     {
-        glColor3ub(240, 240, 240);
+        glColor3ub(240 - ngv, 240 - ngv, 240 - ngv);
         glBegin(GL_QUADS);
         glVertex2i(i, locationY + 270);
         glVertex2i(i, locationY + 290);
@@ -364,7 +365,7 @@ void teslaCyberTruck()
 {
     glPushMatrix();
     glTranslatef(_teslaCyberTruckMoving, 0.0, 0.0);
-    glColor3ub(128, 128, 128);
+    glColor3ub(128 - ngv, 128 - ngv, 128 - ngv);
 
     //base
     glBegin(GL_QUADS);
@@ -385,7 +386,7 @@ void teslaCyberTruck()
 
     //upper triangle
     glBegin(GL_TRIANGLES);
-    glColor3ub(128, 128, 128);
+    glColor3ub(128 - ngv, 128 - ngv, 128 - ngv);
     glVertex2i(10, 410);
     glVertex2i(40, 440);
     glVertex2i(100, 400);
@@ -393,7 +394,7 @@ void teslaCyberTruck()
 
     //font window
     glBegin(GL_TRIANGLES);
-    glColor3ub(200, 200, 200);
+    glColor3ub(200 - ngv, 200 - ngv, 200 - ngv);
     glVertex2i(45, 410);
     glVertex2i(45, 430);
     glVertex2i(85, 410);
@@ -429,7 +430,7 @@ void bus(int busStartLocation)
     glTranslatef(_busMoving, 0.0f, 0.0f);
 
     //base
-    glColor3ub(200, 10, 10);
+    glColor3ub(200 - ngv * 2, 10, 10);
     glBegin(GL_QUADS);
     glVertex2i(busStartLocation, 505);
     glVertex2i(busStartLocation, 570);
@@ -441,7 +442,7 @@ void bus(int busStartLocation)
 
     for (int i = busStartLocation; i < (busStartLocation + 160); i = i + 20)
     {
-        glColor3ub(200, 200, 200);
+        glColor3ub(200 - ngv, 200 - ngv, 200 - ngv);
         glBegin(GL_QUADS);
         glVertex2i(i, 537);
         glVertex2i(i, 569);
@@ -470,13 +471,13 @@ void mountain(int mountainStartPointX, int red, int green, int blue)
 
     glBegin(GL_TRIANGLES);
 
-    glColor3ub(red, green - 10, blue);
+    glColor3ub(red, green - 10 - ngv, blue);
     glVertex2i(mountainStartPointX, 600);
 
-    glColor3ub(red, green + 5, blue);
+    glColor3ub(red, green + 5 - ngv, blue);
     glVertex2i(mountainStartPointX + 150, 900);
 
-    glColor3ub(red, green - 10, blue);
+    glColor3ub(red, green - 10 - ngv, blue);
     glVertex2i(mountainStartPointX + 300, 600);
 
     glEnd();
@@ -495,7 +496,7 @@ void cloud()
     glTranslatef(200, 800, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -512,7 +513,7 @@ void cloud()
     glTranslatef(180, 750, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -529,7 +530,7 @@ void cloud()
     glTranslatef(250, 800, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -546,7 +547,7 @@ void cloud()
     glTranslatef(230, 750, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -566,7 +567,7 @@ void cloud()
     glTranslatef(200, 800, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -583,7 +584,7 @@ void cloud()
     glTranslatef(180, 750, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -600,7 +601,7 @@ void cloud()
     glTranslatef(250, 800, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -617,7 +618,7 @@ void cloud()
     glTranslatef(230, 750, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -634,7 +635,7 @@ void cloud()
     glTranslatef(300, 800, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -651,7 +652,7 @@ void cloud()
     glTranslatef(290, 760, 0);
 
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(255 - ngv, 255 - ngv, 255 - ngv);
     for (int i = 0; i < 200; i++)
     {
         float pi = 3.1416;
@@ -730,6 +731,31 @@ void plane()
     glPopMatrix();
 }
 
+void stopLight()
+{
+
+    glColor3ub(20, 20, 20);
+
+    glBegin(GL_QUADS); // pole
+    glVertex2i(565, 600);
+    glVertex2i(565, 650);
+    glVertex2i(575, 650);
+    glVertex2i(575, 600);
+
+    glVertex2i(555, 650);
+    glVertex2i(555, 720);
+    glVertex2i(585, 720);
+    glVertex2i(585, 650);
+    glEnd();
+
+    glColor3ub(120, 120, 20);
+    drawCircle(570, 665, 0, 8, 100);
+    glColor3ub(greenLightColor[0], greenLightColor[1], greenLightColor[0]);
+    drawCircle(570, 685, 0, 8, 100);
+    glColor3ub(redLightColor[0], redLightColor[1], redLightColor[0]);
+    drawCircle(570, 705, 0, 8, 100);
+}
+
 void display()
 {
 
@@ -769,11 +795,13 @@ void display()
     road(0, 320);
     glPopMatrix();
 
-    ship1();
     teslaCyberTruck();
 
     bus(60);
     bus(400);
+    ship1();
+
+    stopLight();
 
     if (isRaining)
     {
@@ -837,6 +865,7 @@ void myKeyboard(unsigned char key, int x, int y)
         sunOrMoonColor[0] = 240;
         sunOrMoonColor[1] = 240;
         sunOrMoonColor[2] = 150;
+        ngv = 0;
 
         break;
     case 'n':
@@ -847,13 +876,33 @@ void myKeyboard(unsigned char key, int x, int y)
         sunOrMoonColor[1] = 200;
         sunOrMoonColor[2] = 200;
 
+        ngv = 10;
+
         break;
     case 's':
         _teslaCyberTruckUpdateValue = 0.0;
+        _busMovingUpdate = 0.0;
+
+        redLightColor[0] = 250;
+        redLightColor[1] = 00;
+        redLightColor[2] = 00;
+
+        greenLightColor[0] = 00;
+        greenLightColor[1] = 100;
+        greenLightColor[2] = 00;
         break;
 
     case 'p':
         _teslaCyberTruckUpdateValue = 3.7;
+        _busMovingUpdate = -3.7;
+
+        redLightColor[0] = 100;
+        redLightColor[1] = 00;
+        redLightColor[2] = 00;
+
+        greenLightColor[0] = 00;
+        greenLightColor[1] = 240;
+        greenLightColor[2] = 00;
         break;
     case 'r':
         isRaining = !isRaining;
