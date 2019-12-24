@@ -14,18 +14,19 @@ int ngv = 0;
 
 int redLightColor[] = {100, 0, 0};
 int greenLightColor[] = {0, 100, 0};
+float nightSky[] = {0.0, 0.5, 0.8};
 
-float _run3 = 0.0;
+float _cloud = 0.0;
 
 float _planeMoving = 0.0;
-float _planeMovingUpdate = 7.5;
+float _planeMovingUpdate = 4.0;
 
 float _teslaCyberTruckMoving = 0.0;
 float _teslaCyberTruckUpdateValue = 3.7;
 
 float _shipMoving = 0.0;
 float _ship1Moving = 0.0;
-float _ship1UpdateValue = 1.7;
+float _ship1UpdateValue = 5.7;
 
 float _busMoving = 1000.0;
 float _busMovingUpdate = -3.7;
@@ -44,7 +45,7 @@ int cloudColor[] = {255, 255, 255};
 void init()
 {
 
-    glClearColor(0.0, 0.5, 0.8, 1.0);
+    glClearColor(nightSky[0], nightSky[1], nightSky[2], 1.0);
     glColor3f(0.0, 0.0, 0.5);
     glPointSize(4.0);
     gluOrtho2D(0.0, 1000.0, 0.0, 1000.0);
@@ -182,7 +183,7 @@ void river(int locationX, int locationY)
 void ship1()
 {
     glPushMatrix();
-    glTranslatef(_ship1Moving, 0.0, 0.0);
+    glTranslatef(_ship1Moving, -20.0, 0.0);
     //glColor3ub(0, 0, 0);
 
     ///ship1
@@ -490,7 +491,7 @@ void cloud()
     ///Cloud
 
     glPushMatrix();
-    glTranslatef(_run3, 0.0, 0.0);
+    glTranslatef(_cloud, 0.0, 0.0);
 
     glPushMatrix();
     glTranslatef(200, 800, 0);
@@ -844,10 +845,10 @@ void update(int value)
         _busMoving = +1700;
     }
 
-    _run3 += 0.8f;
-    if (_run3 > 1000)
+    _cloud += 0.8f;
+    if (_cloud > 1000)
     {
-        _run3 -= 1700;
+        _cloud -= 1700;
     }
 
     glutPostRedisplay(); //Tell GLUT that the display has changed
@@ -859,13 +860,17 @@ void myKeyboard(unsigned char key, int x, int y)
     switch (key)
     {
     case 'd':
-        buildingWindowColor[0] = 90;
-        buildingWindowColor[1] = 90;
-        buildingWindowColor[2] = 90;
+        buildingWindowColor[0] = 200;
+        buildingWindowColor[1] = 200;
+        buildingWindowColor[2] = 200;
         sunOrMoonColor[0] = 240;
         sunOrMoonColor[1] = 240;
         sunOrMoonColor[2] = 150;
+        nightSky[0] = 0.0;
+        nightSky[1] = 0.5;
+        nightSky[2] = 0.8;
         ngv = 0;
+        glClearColor(nightSky[0], nightSky[1], nightSky[2], 1.0);
 
         break;
     case 'n':
@@ -875,6 +880,11 @@ void myKeyboard(unsigned char key, int x, int y)
         sunOrMoonColor[0] = 200;
         sunOrMoonColor[1] = 200;
         sunOrMoonColor[2] = 200;
+        nightSky[0] = 0.0;
+        nightSky[1] = 0.2;
+        nightSky[2] = 0.3;
+
+        glClearColor(nightSky[0], nightSky[1], nightSky[2], 1.0);
 
         ngv = 10;
 
